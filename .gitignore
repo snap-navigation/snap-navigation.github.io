@@ -1,14 +1,14 @@
 .DS_store
 .idea
-paper/
+/paper/
 
 # Original, unredacted submission assets stay local.
-videos/
-images/
+/videos/
+/images/
 
 # Serve/deploy this allowlisted build only; regenerate with scripts/build.py.
-dist/
+/dist/
 __pycache__/
 
 # Local browser QA artifacts
-.preview/
+/.preview/
