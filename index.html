@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="SNAP: Semantic Navigation Among Pedestrians. Anonymous supplementary material demonstrating joint semantic and crowd navigation.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <title>SNAP: Semantic Navigation Among Pedestrians</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="static/js/index.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">sim2real2field CoRL workshop · Supplementary material</p>
+      <h1><span class="project-name">SNAP</span><span class="title-line">Semantic Navigation<br class="desktop-break">
+          Among Pedestrians</span></h1>
+      <p class="anonymous">Anonymous submission</p>
+      <p class="hero-summary">Our navigation policy learns to jointly reason about<br class="desktop-break"> semantic
+        terrain and dynamic obstacles from a single<br class="desktop-break"> bird’s-eye-view map, without relying on
+        explicit<br class="desktop-break"> human-state estimation.</p>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#videos">Watch Videos</a>
+        <a href="#abstract">Abstract</a><a href="#method">Method</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section id="videos" class="section container" aria-labelledby="videos-title">
+      <div class="section-heading">
+        <p class="eyebrow">From simulation to the real world</p>
+        <h2 id="videos-title">Following Semantic Terrain Constraints While Adapting to Obstacles and Crossing
+          Pedestrians</h2>
+      </div>
+      <figure class="video-figure">
+        <div class="media-title">
+          <h3>Among Crossing Pedestrians With Semantic Terrain Constraints</h3><span class="speed">1.5× speed</span>
+        </div>
+        <video controls controlslist="nodownload" playsinline preload="metadata"
+          poster="assets/images/dynamic-poster.jpg"
+          aria-label="Dynamic real-world navigation demonstration, shown at 1.5 times speed"
+          aria-describedby="dynamic-caption" width="1920" height="1080">
+          <source src="assets/videos/dynamic-scene.mp4" type="video/mp4">
+          Your browser does not support embedded video. Please use a browser that supports HTML5 video.
+        </video>
+        <figcaption id="dynamic-caption">Navigation among crossing pedestrians. Semantic terrain constraints are
+          visualized only in the bird’s-eye-view map inset in the top-left corner; they are not overlaid on the main
+          camera view. <strong>Shown at 1.5× speed.</strong> Faces and identifying background details are blurred.
+        </figcaption>
+      </figure>
+      <figure class="video-figure">
+        <div class="media-title">
+          <h3>Following Semantic Terrain Constraints and Avoiding Static Obstacles</h3><span class="speed">5×
+            speed</span>
+        </div>
+        <video controls controlslist="nodownload" playsinline preload="metadata"
+          poster="assets/images/static-poster.jpg"
+          aria-label="Static real-world navigation demonstration, shown at 5 times speed"
+          aria-describedby="static-caption" width="1920" height="1080">
+          <source src="assets/videos/static-scene.mp4" type="video/mp4">
+          Your browser does not support embedded video. Please use a browser that supports HTML5 video.
+        </video>
+        <figcaption id="static-caption">Navigation through a static scene with semantic terrain constraints. Semantic
+          terrain constraints are
+          visualized only in the bird’s-eye-view map inset in the top-left corner; they are not overlaid on the main
+          camera view.
+          <strong>Shown at 5× speed.</strong> Identifying background details are blurred.
+        </figcaption>
+      </figure>
+    </section>
+    <section id="abstract" class="section tint" aria-labelledby="abstract-title">
+      <div class="reading-width">
+        <h2 id="abstract-title">Abstract</h2>
+        <p class="abstract-text">Navigating crowded urban environments requires robots to avoid pedestrians while
+          adhering to social norms such as remaining on sidewalks. Existing approaches typically address either crowd
+          avoidance or semantic path planning in isolation. We propose a reinforcement learning (RL) navigation policy
+          that jointly reasons about semantic terrain and dynamic obstacles from a single semantically annotated
+          bird’s-eye-view (BEV) map, without relying on explicit human-state estimation. Our policy outperforms
+          established crowd-navigation and semantic-aware baselines and transfers zero-shot to a legged robot,
+          demonstrating socially compliant navigation in highly dynamic real-world scenarios.</p>
+      </div>
+    </section>
+    <section id="method" class="section container" aria-labelledby="method-title">
+      <div class="section-heading">
+        <p class="eyebrow">One observation, joint reasoning</p>
+        <h2 id="method-title">Semantic Terrain Meets Crowd Navigation</h2>
+      </div>
+      <div class="highlights">
+        <div><span class="highlight-number">01</span>
+          <h3>A shared spatial representation</h3>
+          <p>Terrain classes and nearby pedestrians occupy the same robot-centric BEV map.</p>
+        </div>
+        <div><span class="highlight-number">02</span>
+          <h3>No explicit pedestrian states</h3>
+          <p>At inference, the policy reasons from the map without explicit pedestrian positions or velocities as
+            separate state inputs.</p>
+        </div>
+        <div><span class="highlight-number">03</span>
+          <h3>Zero-shot transfer</h3>
+          <p>A policy trained in simulation produces navigation commands at 10 Hz on a real legged robot.</p>
+        </div>
+      </div>
+      <figure class="paper-figure">
+        <a href="assets/images/architecture.png" target="_blank" rel="noopener"
+          aria-label="Open the method overview at full resolution"><img src="assets/images/architecture.png"
+            alt="Framework: a semantic BEV map and proprioception feed CNN and MLP encoders. The navigation policy outputs velocity commands tracked by a frozen locomotion policy. PPO training uses task rewards, penalties, regularization, and a privileged critic."
+            loading="lazy" width="2800" height="1114"></a>
+      </figure>
+      <p class="method-note">For real-world deployment, the BEV map combines a pre-defined semantic map with
+        LiDAR-detected pedestrians.
+      </p>
+    </section>
+    <section id="simulation" class="section tint" aria-labelledby="simulation-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Learning to share the space</p>
+          <h2 id="simulation-title">Navigation in Simulation</h2>
+        </div>
+        <figure class="video-figure">
+          <video controls controlslist="nodownload" playsinline preload="metadata"
+            poster="assets/images/simulation-poster.jpg" aria-label="Simulation navigation demonstration"
+            aria-describedby="simulation-caption" width="1920" height="1080">
+            <source src="assets/videos/simulation.mp4" type="video/mp4">
+            Your browser does not support embedded video. Please use a browser that supports HTML5 video.
+          </video>
+          <figcaption id="simulation-caption">Simulation rollout with semantic terrain, static obstacles, and moving
+            pedestrians.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <a href="assets/images/simulation-snapshots.png" target="_blank" rel="noopener"
+            aria-label="Open the simulation snapshots at full resolution"><img
+              src="assets/images/simulation-snapshots.png"
+              alt="Simulation examples of the robot avoiding pedestrians and static obstacles, followed by a sequence passing an oncoming group in a corridor bounded by high-risk terrain. Insets show the robot’s BEV observation."
+              loading="lazy" width="2800" height="1165"></a>
+          <figcaption><strong>Top:</strong> Avoidance maneuvers across benchmark settings. <strong>Bottom:</strong>
+            Passing an oncoming group in a corridor bounded by high-risk terrain; t₀ marks the closest approach. Insets
+            show the 5 × 5 m BEV observation.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>Anonymous supplementary material</p>
+      <p>Website adapted from <a href="https://nerfies.github.io/" rel="noreferrer">Nerfies</a>. Template and
+        adaptations licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noreferrer">CC
+          BY-SA 4.0</a>.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
